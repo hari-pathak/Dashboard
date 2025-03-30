@@ -1,294 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finance Dashboard</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
-  </head>
-  <body>
-    <div class="dasboard">
-      <!-- Dashboard Sidebar -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <button class="mobile-menu-toggle" id="mobileMenuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
 
-      <div class="sidebar">
-        <div class="logo">
-          <i class="logo1 fas fa-images"></i>
-        </div>
-
-        <ul class="nav-links">
-          <li>
-            <a href="#">
-              <i class="fa-solid fa-grip-vertical"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              <i class="fa-solid fa-calendar-days"></i>
-              <span>Schedule</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              <i class="fas fa-envelope"></i>
-              <span>Message</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#">
-              <i class="fa-solid fa-chart-line"></i>
-              <span>Analytics</span>
-            </a>
-          </li>
-
-          <li class="team-link">
-            <a href="#">
-              <i class="fa-solid fa-user-group"></i>
-              <span>Team</span>
-            </a>
-          </li>
-
-          <ul class="link2">
-            <li id="">
-              <a href="#">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-              </a>
-            </li>
-
-            <li id="">
-              <a href="#">
-                <i class="fas fa-cog"></i>
-                <span>Setting</span>
-              </a>
-            </li>
-          </ul>
-
-          <ul class="link-bottom">
-            <li id="">
-              <a href="#">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                <span>Help</span>
-              </a>
-            </li>
-
-            <li id="">
-              <a href="#">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <span>Logout</span>
-              </a>
-            </li>
-          </ul>
-        </ul>
+  <div class="dashboard">
+    <!-- Dashboard Sidebar -->
+    <div class="sidebar">
+      <div class="logo">
+        <i class="logo1 fas fa-images"></i>
       </div>
 
-      <!-- Main Content -->
-      <div class="main-content">
-        <!-- Top Navigation -->
-        <div class="top-nav">
-          <div class="search">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search here..." />
+      <ul class="nav-links">
+        <li>
+          <a href="#">
+            <img src="/assets/dashboard-logo.png" alt="dashboard-logo">
+            
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <img src="/assets/Schedule-logo.png" alt="Schedule-logo">
+            <span>Schedule</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <img src="/assets/message-logo.png" alt="message-logo">
+            <span>Message</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+           <img src="/assets/analytics.png" alt="analytics-logo">
+            <span>Analytics</span>
+          </a>
+        </li>
+
+        <li class="team-link">
+          <a href="#">
+            <img src="/assets/team-logo.png" alt="team-logo">
+            <span>Team</span>
+          </a>
+        </li>
+
+        <ul class="link2">
+          <li id="">
+            <a href="#">
+             <img src="/assets/profile-logo.png" alt="profile-logo">
+              <span>Profile</span>
+            </a>
+          </li>
+
+          <li id="">
+            <a href="#">
+              <img src="/assets/setting-logo.png" alt="setting-logo">
+              <span>Setting</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="link-bottom">
+          <li id="">
+            <a href="#">
+             <img src="/assets/info-circle.png" alt="info-circle">
+              <span>Help</span>
+            </a>
+          </li>
+
+          <li id="">
+            <a href="#">
+              <img src="/assets/logout-logo.png" alt="logout-logo">
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Top Navigation -->
+      <div class="top-nav">
+        <div class="search">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search here..." />
+        </div>
+
+        <div class="user-info">
+          <div class="icon-button" id="notif-btn">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="icon-button" id="chat-btn">
+            <i class="fas fa-comment-alt"></i>
+          </div>
+          <div class="active" id="profile-btn">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-info-name">
+            <h2>Mirie Kiritani</h2>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Content -->
+      <div class="dashboard-content">
+        <div class="overview-saving-row">
+          <!-- Overview Section -->
+          <div class="overview-section">
+            <h2>Overview</h2>
+            <div class="overview-cards">
+              <div class="overview-card">
+                <div class="overview-card-header">
+                  <div class="overview-card-icon-wallet">
+                    <img src="/assets/empty-wallet.png" alt="empty-wallet" />
+                  </div>
+                  <div class="balance">
+                    <p>Your Balance</p>
+                    <div class="percentage-change">
+                      <i id="balance-icon" class="fa-solid fa-square-arrow-up-right"></i>
+                      <p>15% compared with last month</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="overview-card-footer">
+                  <p>$28,891.138</p>
+                  <i class="fa-solid fa-arrow-right-long"></i>
+                </div>
+              </div>
+
+              <div class="overview-card">
+                <div class="overview-card-header">
+                  <div class="overview-card-icon">
+                    <img src="/assets/saving-logo.png" alt="empty-wallet" />
+                  </div>
+                  <div class="balance">
+                    <p>Saving</p>
+                    <div class="percentage-change">
+                      <i id="saving-icon" class="fa-solid fa-square-arrow-up-right"></i>
+                      <p>10% compared with last month</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="overview-card-footer">
+                  <p>$1,050.44</p>
+                  <i class="fa-solid fa-arrow-right-long"></i>
+                </div>
+              </div>
+
+              <div class="overview-card">
+                <div class="overview-card-header">
+                  <div class="overview-card-icon">
+                    <img src="/assets/expenses-logo.png" alt="empty-wallet" />
+                  </div>
+                  <div class="balance">
+                    <p>Expenses</p>
+                    <div class="percentage-change">
+                      <i id="expenses-icon" class="fa-solid fa-square-arrow-up-right"></i>
+                      <p>2% compared with last month</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="overview-card-footer">
+                  <p>$200.31</p>
+                  <i class="fa-solid fa-arrow-right-long"></i>
+                </div>
+              </div>
+
+              <div class="overview-card">
+                <div class="overview-card-header">
+                  <div class="overview-card-icon">
+                    <img src="/assets/income-logo.png" alt="empty-wallet" />
+                  </div>
+                  <div class="balance">
+                    <p>Incomes</p>
+                    <div class="percentage-change">
+                      <i id="income-icon" class="fa-solid fa-square-arrow-up-right"></i>
+                      <p>8% compared with last month</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="overview-card-footer">
+                  <p>$21,121.0</p>
+                  <i class="fa-solid fa-arrow-right-long"></i>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="user-info">
-            <div class="icon-button" id="notif-btn">
-              <i class="fas fa-bell"></i>
+          <!-- Saving Section -->
+          <div class="saving-plan-section">
+            <div class="saving-plan-header">
+              <h2>Saving Plan</h2>
+              <button class="view-all">See All</button>
             </div>
-            <div class="icon-button" id="chat-btn">
-              <i class="fas fa-comment-alt"></i>
-            </div>
-            <div class="active" id="profile-btn">
-              <i class="fas fa-user"></i>
-            </div>
-            <div class="user-info-name">
-              <h2>Mirie Kiritani</h2>
-              <i class="fas fa-chevron-down"></i>
+
+            <div class="divider2"></div>
+
+            <div class="saving-plan-cards">
+              <div class="saving-plan-card">
+                <div class="saving-plan-info">
+                  <h3>Bali Vacation</h3>
+                  <p>Target: August 25 2022</p>
+                </div>
+                <div class="saving-plan-progress">
+                  <div class="progress-text">
+                    <h2>$1950,21 <span>/ $4000</span></h2>
+                    <p>48%</p>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 48.76%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="saving-plan-card">
+                <div class="saving-plan-info">
+                  <h3>New Gadget</h3>
+                  <p>Target: August 25 2022</p>
+                </div>
+                <div class="saving-plan-progress">
+                  <div class="progress-text">
+                    <h2>$790,21 <span>/ $1000</span></h2>
+                    <p id="progress-text-gadget" class="progress-text">79%</p>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill-gadget" style="width: 79%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="saving-plan-card">
+                <div class="saving-plan-info">
+                  <h3>Charity</h3>
+                  <p>Target: August 25 2022</p>
+                </div>
+                <div class="saving-plan-progress">
+                  <div class="progress-text">
+                    <h2>$32,111 <span>/ $1000</span></h2>
+                    <p id="progress-text-charity" class="progress-text">32%</p>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill-charity" style="width: 32%"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Dashboard Content -->
-
-        <div class="dashboard-content">
-          <div class="overview-saving-row">
-            <!-- Overview Section -->
-            <div class="overview-section">
-              <h2>Overview</h2>
-              <div class="overview-cards">
-                <div class="overview-card">
-                  <div class="overview-card-header">
-                    <div class="overview-card-icon-wallet">
-                      <img src="/assets/empty-wallet.png" alt="empty-wallet">
-                    </div>
-                    <div class="balance">
-                      <p>Your Balance</p>
-                      
-                        <div class="percentage-change">
-                          <i id="balance-icon" class="fa-solid fa-square-arrow-up-right"></i> 
-                          <p>15%
-                            compared with last month</p>
-                        </div>
-                      
-                    </div>
-                  </div>
-
-                  <div class="divider"></div>
-
-                  <div class="overview-card-footer">
-                    <p>$28,891.138</p>
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                  </div>
-                </div>
-
-                <div class="overview-card">
-                  <div class="overview-card-header">
-                    <div class="overview-card-icon">
-                      <img src="/assets/saving-logo.png" alt="empty-wallet">
-                    </div>
-                    <div class="balance">
-                      <p>Saving</p>
-                      
-                        <div class="percentage-change">
-                          <i id="saving-icon" class="fa-solid fa-square-arrow-up-right"></i> 
-                          <p>10%
-                            compared with last month</p>
-                        </div>
-                      
-                    </div>
-                  </div>
-
-                  <div class="divider"></div>
-
-                  <div class="overview-card-footer">
-                    <p>$1,050.44</p>
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                  </div>
-                </div>
-
-                <div class="overview-card">
-                  <div class="overview-card-header">
-                    <div class="overview-card-icon">
-                      <img src="/assets/expenses-logo.png" alt="empty-wallet">
-                    </div>
-                    <div class="balance">
-                      <p>Expenses</p>
-                      
-                        <div class="percentage-change">
-                          <i id="expenses-icon" class="fa-solid fa-square-arrow-up-right"></i> 
-                          <p>2%
-                            compared with last month</p>
-                        </div>
-                      
-                    </div>
-                  </div>
-
-                  <div class="divider"></div>
-
-                  <div class="overview-card-footer">
-                    <p>$200.31</p>
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                  </div>
-                </div>
-
-
-                <div class="overview-card">
-                  <div class="overview-card-header">
-                    <div class="overview-card-icon">
-                      <img src="/assets/income-logo.png" alt="empty-wallet">
-                    </div>
-                    <div class="balance">
-                      <p>Incomes</p>
-                      
-                        <div class="percentage-change">
-                          <i id="income-icon" class="fa-solid fa-square-arrow-up-right"></i> 
-                          <p>8% compared with last month</p>
-                        </div>
-                      
-                    </div>
-                  </div>
-
-                  <div class="divider"></div>
-
-                  <div class="overview-card-footer">
-                    <p>$21,121.0</p>
-                    <i class="fa-solid fa-arrow-right-long"></i>
-                  </div>
-                </div>
+        <!-- Lower Section -->
+        <div class="overview-saving-row">
+          <!-- Chart -->
+          <div class="charts-row">
+            <div class="chart-container">
+              <div class="chart-header">
+                <h3>Analytics</h3>
+                <select class="chart-filter">
+                  <option>Last 7 Days</option>
+                  <option>Last Month</option>
+                  <option>Last Year</option>
+                </select>
+              </div>
+              <div class="chart-placeholder">
+                <canvas id="salesChart"></canvas>
               </div>
             </div>
+          </div>
 
-            <!-- Saving Section -->
-            <div class="saving-plan-section">
-              <div class="saving-plan-header">
-                <h2>Saving Plan</h2>
-                <button class="view-all">See All</button>
+          <!-- Recent Transactions -->
+          <div class="saving-plan-section">
+            <div class="saving-plan-header">
+              <h2>Recent Transaction</h2>
+              <button class="view-all">See All</button>
+            </div>
+
+            <div class="divider3"></div>
+
+            <div class="recent-transaction-cards">
+              <div class="recent-transaction-card">
+                <div class="transaction-detail">
+                  <div class="transaction-icon">
+                    <img src="/assets/gallery.png" alt="gallery" />
+                  </div>
+                  <div class="transaction-info">
+                    <h2>Figma</h2>
+                    <p>August 20,2022</p>
+                  </div>
+                </div>
+                <div class="transaction-price">
+                  <p class="price">$100</p>
+                  <p class="status">Completed</p>
+                </div>
               </div>
 
-              <div class="divider2"></div>
-
-              <div class="saving-plan-cards">
-                <div class="saving-plan-card">
-                  <div class="saving-plan-info">
-                    <h3>Bali Vacation</h3>
-                    <p>Target: August 25 2022</p>
+              <div class="recent-transaction-card">
+                <div class="transaction-detail">
+                  <div class="transaction-icon">
+                    <img src="/assets/gallery.png" alt="gallery" />
                   </div>
-                  <div class="saving-plan-progress">
-                    <div class="progress-text">
-                      <h2>$1950,21 <span>/ $4000</span></h2>
-                      <p >48%</p>
-                    </div>
-                    <div class="progress-bar">
-                      <div class="progress-fill" style="width: 48.76%"></div>
-                    </div>
+                  <div class="transaction-info">
+                    <h2>Youtube</h2>
+                    <p>August 20,2022</p>
                   </div>
                 </div>
+                <div class="transaction-price">
+                  <p class="price">$120</p>
+                  <p class="status">Completed</p>
+                </div>
+              </div>
 
-                <div class="saving-plan-card">
-                  <div class="saving-plan-info">
-                    <h3>New Gadget</h3>
-                    <p>Target: August 25 2022</p>
+              <div class="recent-transaction-card">
+                <div class="transaction-detail">
+                  <div class="transaction-icon">
+                    <img src="/assets/gallery.png" alt="gallery" />
                   </div>
-                  <div class="saving-plan-progress">
-                    <div class="progress-text">
-                      <h2>$790,21 <span>/ $1000</span></h2>
-                      <p id="progress-text-gadget" class="progress-text">79%</p>
-                    </div>
-                    <div class="progress-bar">
-                      <div
-                        class="progress-fill-gadget"
-                        style="width: 79%"
-                      ></div>
-                    </div>
+                  <div class="transaction-info">
+                    <h2>Spotify</h2>
+                    <p>August 20,2022</p>
                   </div>
                 </div>
+                <div class="transaction-price">
+                  <p class="price">$15</p>
+                  <p class="status">Completed</p>
+                </div>
+              </div>
 
-                <div class="saving-plan-card">
-                  <div class="saving-plan-info">
-                    <h3>Charity</h3>
-                    <p>Target: August 25 2022</p>
+              <div class="recent-transaction-card">
+                <div class="transaction-detail">
+                  <div class="transaction-icon">
+                    <img src="/assets/gallery.png" alt="gallery" />
                   </div>
-                  <div class="saving-plan-progress">
-                    <div class="progress-text">
-                      <h2>$32,111 <span>/ $1000</span></h2>
-                      <p id="progress-text-charity" class="progress-text">
-                        32%
-                      </p>
-                    </div>
-                    <div class="progress-bar">
-                      <div
-                        class="progress-fill-charity"
-                        style="width: 32%"
-                      ></div>
-                    </div>
+                  <div class="transaction-info">
+                    <h2>Freepik</h2>
+                    <p>August 20,2022</p>
                   </div>
+                </div>
+                <div class="transaction-price">
+                  <p class="price">$300</p>
+                  <p class="status">Completed</p>
                 </div>
               </div>
             </div>
@@ -296,5 +372,8 @@
         </div>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>
