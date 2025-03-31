@@ -863,12 +863,10 @@
   }
 }
 
-/* Accessibility improvements */
 button, input, select {
   font-size: 16px;
 }
 
-/* Disable hover effects on touch devices */
 @media (hover: none) {
   .overview-card:hover {
     transform: none;
