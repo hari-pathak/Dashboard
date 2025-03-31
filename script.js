@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
     if (salesChartCtx) {
       // Define the datasets directly
-      const dataset1 = [13000, 12000, 14000, 9000, 8000, 5000, 9000, 6000, 14000, 10000, 12000, 6000, 20000, 7000, 18000, 13000];
+      const dataset1 = [12000, 14000, 11000, 14000, 8000, 5000, 9000, 6000, 14000, 10000, 12000, 6000, 20000, 7000, 18000, 13000];
       const dataset2 = [5000, 6000, 8000, 8000, 5000, 6000, 5000, 5500, 10000, 7000, 4000, 5000, 6000, 4000, 7000, 8000];
       
       // Create labels for each day of the week (Sun-Sat)
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               label: 'Income',
               data: dataset1,
-              borderColor: '#4f46e5',
+              borderColor: '#4745A4',
               borderWidth: 3,
               tension: 0.4,
               fill: false,
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', function() {
             {
               label: 'Expenses',
               data: dataset2,
-              borderColor: '#10b981',
+              borderColor: '#F8CD70',
               borderWidth: 3,
               tension: 0.4,
               fill: false,
               pointRadius: 0,
               pointHoverRadius: 6,
-              pointHoverBackgroundColor: '#10b981',
+              pointHoverBackgroundColor: '#F8CD70',
               pointHoverBorderWidth: 2,
               pointHoverBorderColor: '#fff'
             }
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              display: true,
+              display: false,
               position: 'top',
               align: 'end',
               labels: {
