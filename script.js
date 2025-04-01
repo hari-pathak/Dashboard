@@ -9,32 +9,42 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const salesChartCtx = document.getElementById("salesChart");
+  const chartFilter = document.querySelector(".chart-filter");
 
   if (salesChartCtx) {
-    const dataset1 = [
-      12000, 14000, 11000, 14000, 8000, 5000, 9000, 6000, 14000, 10000, 12000,
-      6000, 20000, 7000, 18000, 13000,
-    ];
-    const dataset2 = [
-      5000, 6000, 8000, 8000, 5000, 6000, 5000, 5500, 10000, 7000, 4000, 5000,
-      6000, 4000, 7000, 8000,
-    ];
+    
+    const timePeriodData = {
+      weekly: {
+        dataset1: [12000, 14000, 11000, 14000, 8000, 5000, 9000],
+        dataset2: [5000, 6000, 8000, 8000, 5000, 6000, 5000],
+        labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        suggestedMax: 22000
+      },
+      monthly: {
+        dataset1: [12000, 14000, 11000, 14000, 8000, 5000, 9000, 6000, 14000, 10000, 12000,
+          6000],
+        dataset2: [5000, 6000, 8000, 8000, 5000, 6000, 5000, 5500, 10000, 7000, 4000, 5000
+    ],
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        suggestedMax: 25000
+      },
+      yearly: {
+        dataset1: [150000, 180000, 210000, 190000],
+        dataset2: [120000, 140000, 160000, 170000],
+        labels: ["2020", "2021", "2022", "2023"],
+        suggestedMax: 250000
+      }
+    };
 
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const labels = [];
-    for (let i = 0; i < dataset1.length; i++) {
-      const weekNum = Math.floor(i / 7) + 1;
-      labels.push(`${days[i % 7]} W${weekNum}`);
-    }
 
-    new Chart(salesChartCtx, {
+    const salesChart = new Chart(salesChartCtx, {
       type: "line",
       data: {
-        labels: labels,
+        labels: timePeriodData.weekly.labels,
         datasets: [
           {
             label: "Label1",
-            data: dataset1,
+            data: timePeriodData.weekly.dataset1,
             borderColor: "#4745A4",
             borderWidth: 3,
             tension: 0.4,
@@ -47,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           {
             label: "Label2",
-            data: dataset2,
+            data: timePeriodData.weekly.dataset2,
             borderColor: "#F8CD70",
             borderWidth: 3,
             tension: 0.4,
@@ -109,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
         scales: {
           y: {
             beginAtZero: true,
-            suggestedMax: 22000,
+            suggestedMax: timePeriodData.weekly.suggestedMax,
             grid: {
               drawBorder: false,
               color: "#e5e7eb",
@@ -117,7 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             ticks: {
               callback: function (value) {
-                return "$" + value / 1000 + "k";
+               
+                const period = chartFilter ? chartFilter.value.toLowerCase() : "weekly";
+                if (period === "yearly") {
+                  return "$" + value / 1000 + "k";
+                } else {
+                  return "$" + value / 1000 + "k";
+                }
               },
               stepSize: 5000,
               font: {
@@ -140,9 +156,6 @@ document.addEventListener("DOMContentLoaded", function () {
               },
               color: "#6b7280",
               maxRotation: 0,
-              callback: function (value, index) {
-                return this.getLabelForValue(value).split(" ")[0];
-              },
             },
           },
         },
@@ -157,6 +170,30 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
     });
+
+
+    if (chartFilter) {
+      chartFilter.addEventListener("change", function() {
+        const period = this.value.toLowerCase();
+        const data = timePeriodData[period];
+
+        salesChart.data.labels = data.labels;
+        salesChart.data.datasets[0].data = data.dataset1;
+        salesChart.data.datasets[1].data = data.dataset2;
+        
+        salesChart.options.scales.y.suggestedMax = data.suggestedMax;
+        
+        salesChart.options.scales.y.ticks.callback = function(value) {
+          if (period === "yearly") {
+            return "$" + value / 1000 + "k";
+          } else {
+            return "$" + value / 1000 + "k";
+          }
+        };
+        
+        salesChart.update();
+      });
+    }
   }
 
   document.addEventListener("click", function (event) {
